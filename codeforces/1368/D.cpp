@@ -16,8 +16,7 @@ int main(int argc, char const *argv[]) {
         }
     }
     ull sum = 0;
-    for (size_t i = 0; i < n; i++) {
+    for (size_t i = 0; i < n; i++)
         sum += (ull)a[i]*a[i];
-    }
     std::cout << sum << '\n';
 }
