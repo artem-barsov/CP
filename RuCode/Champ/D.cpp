@@ -11,9 +11,6 @@
 
 using namespace std;
 
-// const int X = 13;
-//
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -32,7 +29,7 @@ int main() {
 
     vector<long long> v;
     // тут поменять n на загаданное число шобы не циклить как лох
-    for (long long i = 2; i <= 20; ++i) {
+    for (long long i = 2; i <= n; ++i) {
         if (!prime[i]) {
             continue;
         }
@@ -42,8 +39,8 @@ int main() {
 
         // long long g = gcd(i, X);
         long long g;
-
         cin >> g;
+
         if (g == i) {
             v.push_back(i);
         }
@@ -58,10 +55,11 @@ int main() {
             ++r;
         }
 
-        while (l < r) {
+        while (l + 1 < r) {
             long long m = (l + r) / 2;
             long long cur = pow(v[i], m);
             cout << "? " << cur << endl;
+            cout.flush();
             // long long g = gcd(X, cur);
             long long g;
             cin >> g;
@@ -70,13 +68,14 @@ int main() {
                 l = m;
                 last = cur;
             } else {
-                r = m-1;
+                r = m;
             }
         }
 
         ans *= last;
     }
-    cout << ans << endl;
+    cout << "! " << ans << endl;
+    cout.flush();
 
     return 0;
 }
