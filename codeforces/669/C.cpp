@@ -9,13 +9,11 @@ int main(int argc, char const *argv[]) {
     int p1 = 0, p2 = 1;
     while (p2 < n) {
         int k1, k2;
-        printf("? %d %d", p1+1, p2+1);
-        std::cout << endl;
-        fflush(stdout);
+        printf("? %d %d\n", p1+1, p2+1);
+        // fflush(stdout);
         std::cin >> k1;
-        printf("? %d %d", p2+1, p1+1);
-        std::cout << endl;
-        fflush(stdout);
+        printf("? %d %d\n", p2+1, p1+1);
+        // fflush(stdout);
         std::cin >> k2;
 
         if (k1 > k2) {
@@ -33,5 +31,4 @@ int main(int argc, char const *argv[]) {
         if (p[i]) std::cout << p[i] << ' ';
         else std::cout << n << ' ';
     }
-    std::cout << endl;
 }
