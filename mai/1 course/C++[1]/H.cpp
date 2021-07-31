@@ -12,4 +12,3 @@ int main() {
 	if ((a > 0) && (b > 0)) cout << a*b;
 	else cout << 0;
 }
-    
