@@ -1,4 +1,0 @@
-#define _CRT_DISABLE_PERFCRIT_LOCKS
-ios_base::sync_with_stdio(false);
-cin.tie(NULL);
-cout.tie(NULL);
