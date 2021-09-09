@@ -167,11 +167,25 @@
     'Binary Power':
         'prefix': 'binpow'
         'body': """
-        int binpow (int a, int n) {
+        int binpow(int a, int n) {
         	int res = 1;
         	while (n) {
         		if (n&1) res *= a;
         		a *= a;
+        		n >>= 1;
+        	}
+        	return res;
+        }
+        """
+
+    'Modular Binary Power':
+        'prefix': 'modbinpow'
+        'body': """
+        int modbinpow(int a, int n, int mod) {
+        	int res = 1;
+        	while (n) {
+        		if (n&1) res = (res *1ull* a) % mod;
+        		a = (a *1ull* a) % mod;
         		n >>= 1;
         	}
         	return res;
@@ -209,4 +223,28 @@
             	}
             }
         };
+        """
+
+    'Factorial Precalc':
+        'prefix': 'precfact'
+        'body': """
+        const int MAXN = ${1:200000};
+        int fact[MAXN+1];
+        int inv_fact[MAXN+1];
+        void precalc() {
+            fact[0] = 1;
+            for (int i = 1; i <= MAXN; i++)
+                fact[i] = (fact[i-1] *1ull* i) % MOD;
+            inv_fact[MAXN] = modinv(fact[MAXN], MOD);
+            for (int i = MAXN-1; i >= 0; i--)
+                inv_fact[i] = (inv_fact[i+1] *1ull* (i+1)) % MOD;
+        }$2
+        """
+
+    'Modular Inverse':
+        'prefix': 'modinv'
+        'body': """
+        int modinv(int a, int mod) {
+            return modbinpow(a, mod - 2, mod);
+        }
         """
