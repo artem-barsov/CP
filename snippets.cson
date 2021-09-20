@@ -111,6 +111,7 @@
         'prefix': 'cf'
         'body': """
         #include <bits/stdc++.h>
+        #define _CRT_DISABLE_PERFCRIT_LOCKS
 
         using namespace std;
         ${1:
@@ -119,6 +120,9 @@
         \\}
         }
         int main(int argc, char const *argv[]) {
+            ios_base::sync_with_stdio(false);
+            cin.tie(NULL);
+            cout.tie(NULL);
             ${1:int t;
             std::cin >> t;
             while (t--) solve();}$3
