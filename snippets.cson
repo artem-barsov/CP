@@ -111,7 +111,9 @@
         'prefix': 'cf'
         'body': """
         #include <bits/stdc++.h>
+        #ifndef LOCAL
         #define _CRT_DISABLE_PERFCRIT_LOCKS
+        #endif
 
         using namespace std;
         ${1:
@@ -120,9 +122,11 @@
         \\}
         }
         int main(int argc, char const *argv[]) {
+        #ifndef LOCAL
             ios_base::sync_with_stdio(false);
             cin.tie(NULL);
             cout.tie(NULL);
+        #endif
             ${1:int t;
             std::cin >> t;
             while (t--) solve();}$3
@@ -134,7 +138,7 @@
         'body': """
         for (size_t bf = 0; bf < (1 << ${1:vars_cnt}); bf++) {
             bitset<${2:MAX_CNT}> bs(bf);
-            for (size_t i = 0; i < ${1:VARS_CNT}; i++) {
+            for (size_t i = 0; i < ${1:vars_cnt}; i++) {
                 ${3:bs[i]}
             }
         }
@@ -252,3 +256,7 @@
             return modbinpow(a, mod - 2, mod);
         }
         """
+
+    '1ull':
+        'prefix': '1'
+        'body': '1ull'
