@@ -52,6 +52,10 @@
         'prefix': 'pair'
         'body': 'std::pair<${1:int}, ${2:int}> $3'
 
+    'std::array':
+        'prefix': 'array'
+        'body': 'std::array<${1:int}, ${2:SIZE}> $3'
+
     'Read array':
         'prefix': 'readarr'
         'body': """
@@ -136,9 +140,9 @@
     'Brute force':
         'prefix': 'brute'
         'body': """
-        for (size_t bf = 0; bf < (1 << ${1:vars_cnt}); bf++) {
+        for (size_t bf = 0; bf < (1ull << ${1:vars_cnt}); bf++) {
             bitset<${2:MAX_CNT}> bs(bf);
-            for (size_t i = 0; i < ${1:vars_cnt}; i++) {
+            for (int i = 0; i < ${1:vars_cnt}; i++) {
                 ${3:bs[i]}
             }
         }
@@ -260,3 +264,15 @@
     '1ull':
         'prefix': '1'
         'body': '1ull'
+
+    'Binary Search':
+        'prefix': 'binsearch'
+        'body': """
+        int l = -1, r = a.size(); // (l; r), не включительно
+        while (l + 1 < r) { // ищем самую левую позицию для некоторого x,
+            int m = std::midpoint(l, r); // где функция check == true
+            if (check(a, m, x)) r = m; // check на a: ... false false | [true] true ...
+            else                l = m; // [true] - наименьший, искомый
+        }
+        std::cout << r << '\n';
+        """
